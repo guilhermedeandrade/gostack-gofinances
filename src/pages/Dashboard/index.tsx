@@ -8,7 +8,8 @@ import api from '../../services/api';
 
 import Header from '../../components/Header';
 
-import { formatDate, formatValue } from '../../utils';
+import formatDate from '../../utils/formatDate';
+import formatValue from '../../utils/formatValue';
 
 import { Container, CardContainer, Card, TableContainer } from './styles';
 
@@ -66,7 +67,10 @@ const Dashboard: React.FC = () => {
       const balanceEntries = Object.entries(response.data.balance);
 
       const formattedBalance = balanceEntries.reduce(
-        (acc, [key, value]) => ({ ...acc, [key]: formatValue(value) }),
+        (acc, [key, value]) => ({
+          ...acc,
+          [key]: formatValue(value),
+        }),
         {} as Balance,
       );
 
